@@ -7,19 +7,18 @@ function App() {
   });
 
   function handleChange(event) {
-    const newValue = event.target.value;
-    const inputName = event.target.name;
+    const { name, value } = event.target;
 
     setFullName(prevValue => {
-      if (inputName === "firstname") {
+      if (name === "firstname") {
         return {
-          firstname: newValue,
+          firstname: value,
           lastname: prevValue.lastname
         };
-      } else if (inputName === "lastname") {
+      } else if (name === "lastname") {
         return {
           firstname: prevValue.firstname,
-          lastname: newValue
+          lastname: value
         };
       }
     });
@@ -34,14 +33,16 @@ function App() {
         <input
           name="firstname"
           placeholder="First Name"
+          autocomplete="off"
           onChange={handleChange}
-          // value={fullName.firstname}
+          value={fullName.firstname}
         />
         <input
           name="lastname"
           placeholder="Last Name"
+          autocomplete="off"
           onChange={handleChange}
-          // value={fullName.lastname}
+          value={fullName.lastname}
         />
         <button>Submit</button>
       </form>
